@@ -1,7 +1,7 @@
 'use strict';
 
 const uniqid = require('uniqid');
-const uuidV4 = require('uuid').v4;
+const uuid = require('uuid');
 const Buffer = global.Buffer || require('buffer').Buffer;
 
 function IdGenerator (kwargs = {}) {
@@ -18,14 +18,14 @@ function IdGenerator (kwargs = {}) {
     }
 
     if (type === 'base64') {
-      return uuidV4(null, Buffer.alloc(16))
+      return uuid.v4(null, Buffer.alloc(16))
         .toString('base64')
         .replace(/\//g, '_')
         .replace(/\+/g, '-')
         .substring(0, 22); // remove '=='
     }
 
-    return uuidV4();
+    return uuid.v4();
   }
 
   this.setType = function (newType) {
@@ -56,5 +56,8 @@ Object.defineProperties(defaultGenerator, {
     set: function(value) {}
   }
 });
+
+defaultGenerator.uniqid = uniqid;
+defaultGenerator.uuid = uuid;
 
 module.exports = defaultGenerator;
