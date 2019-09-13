@@ -1,0 +1,45 @@
+{
+  "name": "idstream",
+  "version": "0.3.0",
+  "description": "A simple ID generator based on various methods",
+  "main": "index.js",
+  "files": [
+    "bin/",
+    "lib/"
+  ],
+  "scripts": {
+    "build": "babel ./src -d ./lib",
+    "clean": "rm -rf ./lib",
+    "prepublish": "npm run clean && NODE_ENV=${DEVEBOT_NODE_ENV:-production} npm run build",
+    "pretest": "npm run clean && NODE_ENV=${DEVEBOT_NODE_ENV:-test} npm run build",
+    "test": "mocha --recursive test/**/*-test.js",
+    "verify": "npm run prepublish && mocha --recursive test/**/*-test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devebot/idstream.git"
+  },
+  "keywords": [
+    "id-generator"
+  ],
+  "author": {
+    "name": "Devebot team",
+    "email": "contact@devebot.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devebot/idstream/issues"
+  },
+  "homepage": "https://github.com/devebot/idstream#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-minify-mangle-names": "^0.3.0",
+    "babel-preset-env": "^1.6.1",
+    "chai": "^4.2.0",
+    "mocha": "^4.1.0"
+  },
+  "dependencies": {
+    "uniqid": "5.0.3",
+    "uuid": "3.3.3"
+  }
+}
