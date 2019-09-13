@@ -1,6 +1,6 @@
 {
   "name": "idstream",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A simple ID generator based on various methods",
   "main": "index.js",
   "files": [
